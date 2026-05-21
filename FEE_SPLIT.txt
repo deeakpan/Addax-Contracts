@@ -1,0 +1,24 @@
+ADDAX / Uniswap v3-core — fee split (from UniswapV3Pool.swap)
+
+Source: github.com/Uniswap/v3-core — contracts/UniswapV3Pool.sol (swap loop)
+
+1) Swap fee (the “fee tier” on the pool, e.g. 500 / 3000 / 10000)
+   - SwapMath.computeSwapStep(..., fee) computes step.feeAmount for each step.
+   - That is the fee charged on the notional for that step at this pool’s fixed fee.
+
+2) Protocol cut (optional; controlled per pool via slot0.feeProtocol)
+   - feeProtocol is stored as two 4-bit values in one byte (one nibble per token direction).
+   - During swap, cache.feeProtocol = zeroForOne ? (feeProtocol % 16) : (feeProtocol >> 4).
+   - If cache.feeProtocol > 0:
+         delta = step.feeAmount / cache.feeProtocol
+         step.feeAmount -= delta
+         state.protocolFee += uint128(delta)
+   - So a *fraction* of the swap fee (1/feeProtocol of feeAmount in that step) is diverted to
+     protocolFees.token0 or token1 (accumulated; collected via collectProtocol on the pool).
+   - The remainder of step.feeAmount accrues to LPs via feeGrowthGlobal*X128 (pro-rata to liquidity).
+
+3) Default / governance
+   - New pools often start with protocol fee off (feeProtocol nibble = 0), unless factory/governance sets it.
+   - Pool owner (factory in default Uniswap v3) may call setFeeProtocol to turn on skimming.
+
+Router / SwapRouter does not change this split; it only calls pool.swap. Position manager mints/burns liquidity; fee accrual is still in the pool contract.

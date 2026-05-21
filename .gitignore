@@ -1,0 +1,15 @@
+# Secrets — never commit
+.env
+.env.*
+!.env.example
+
+# Hardhat build artifacts
+/artifacts/
+/cache/
+
+# Local dependencies
+/node_modules/
+/perps/**/node_modules/
+/perps/**/cache/
+/perps/**/artifacts/
+/perps/**/artifacts-v2/

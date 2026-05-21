@@ -1,0 +1,34 @@
+{
+  "project": "addax",
+  "protocol": "v3",
+  "networkName": "LitVM LiteForge",
+  "chainId": 4441,
+  "gasToken": "zkLTC",
+  "rpcHttp": "https://liteforge.rpc.caldera.xyz/http",
+  "rpcWebSocket": "wss://liteforge.rpc.caldera.xyz/ws",
+  "blockExplorer": "https://liteforge.explorer.caldera.xyz",
+  "deployedAt": "2026-04-25T10:46:29.981Z",
+  "deployer": "0x68ac96Ce64D62386b1A5E2DFf8f0F01fEEd46E09",
+  "contracts": {
+    "AddaxV3Factory": "0x8b84D582622DfF7bC3582365941791B68Ae70f4d",
+    "AddaxV3SwapRouter": "0xc6B464b146B1C9D03646b624f6B3ECA9794FdfB5",
+    "AddaxV3QuoterV2": "0x46D5676250100e6f9befF90455E032F85cC8775a",
+    "AddaxV3NonfungiblePositionManager": "0x049293EcBc8771488aD16EeDE035e14342D60D9F",
+    "AddaxV3NonfungibleTokenPositionDescriptor": "0x06465C09de09a0aB8f85A37829f80CC78b669039",
+    "AddaxV3NFTDescriptorLibrary": "0x59e36A00cE88970713E842b786bdDe97386e268c",
+    "AddaxV3TickLens": "0x942108E5AE08De7A48e1F28c3F96BB8849d472b6",
+    "AddaxV3InterfaceMulticall": "0xD1Db44b4f9CDa05C32C7E9d1896296837a1cee57",
+    "wzkLTC": "0x6eF676c26E8C977554DA186eD0B215956E8F8753",
+    "wzkLTCLegacy": "0x60A84eBC3483fEFB251B76Aea5B8458026Ef4bea",
+    "aUSDC": "0x72F4efAC9133d28fa05aEbc9edCd8fC3dE14BB50",
+    "usdcLegacy": "0xd5118dEe968d1533B2A57aB66C266010AD8957fa",
+    "AddaxAggregatorV3": "0x0b0935E14b72D0d20c477788d7BD70D89632BEd5",
+    "OnmiFunRouter": "0xe351c47c3b96844f46e9808a7d5bba8101bffb57"
+  },
+  "notes": {
+    "pools": "Create pools: AddaxV3Factory.createPool(tokenA, tokenB, fee). Typical fees: 500, 3000, 10000.",
+    "liquidity": "Mint/adjust LP positions via AddaxV3NonfungiblePositionManager (NFT positions).",
+    "quotes": "Off-chain quotes: AddaxV3QuoterV2 (staticcall, not a swap).",
+    "feeSplit": "See contracts/FEE_SPLIT.txt (UniswapV3Pool.swap fee + optional protocol cut)."
+  }
+}

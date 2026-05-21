@@ -1,0 +1,19 @@
+{
+  "network": "liteforge",
+  "chainId": 4441,
+  "note": "Run: npm run deploy:perps:ltc — default instant Router trades, one liquidation keeper bot",
+  "trading": {
+    "mode": "instant",
+    "entrypoint": "Router",
+    "methods": ["increasePosition", "decreasePosition"]
+  },
+  "dia": {
+    "oracle": "0xE7F65d4bAdcfABc4eA57B8F66bBa044363D89eec",
+    "maxPriceAgeSeconds": 3600,
+    "heartbeatSeconds": 3600
+  },
+  "tokens": {
+    "wzkLTC": "0x6eF676c26E8C977554DA186eD0B215956E8F8753",
+    "aUSDC": "0x72F4efAC9133d28fa05aEbc9edCd8fC3dE14BB50"
+  }
+}

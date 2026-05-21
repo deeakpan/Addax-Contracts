@@ -1,0 +1,40 @@
+{
+  "name": "contracts",
+  "version": "1.0.0",
+  "description": "ADDAX AMM — V3 deployment (core/periphery via npm artifacts)",
+  "main": "index.js",
+  "scripts": {
+    "compile": "hardhat compile && node scripts/patch-periphery-pool-init-hash.js",
+    "compile:aris": "hardhat compile --config hardhat.aris.config.js",
+    "compile:addax": "hardhat compile --config hardhat.addax.config.js",
+    "compile:perps": "hardhat compile --config hardhat.perps.config.js",
+    "deploy:perps:dia": "hardhat run --config hardhat.perps.config.js scripts/perps/deploy-dia-price-feed.js --network liteforge",
+    "deploy:perps:ltc": "hardhat run --config hardhat.perps.config.js scripts/perps/deploy-ltc-perps-liteforge.js --network liteforge",
+    "perps:add-stable": "hardhat run --config hardhat.perps.config.js scripts/perps/add-stable-collateral.js --network liteforge",
+    "perps:add-fnusd": "hardhat run --config hardhat.perps.config.js scripts/perps/add-fnusd-stable.js --network liteforge",
+    "perps:seed-glp": "hardhat run --config hardhat.perps.config.js scripts/perps/seed-glp-liteforge.js --network liteforge",
+    "perps:reseed-glp": "hardhat run --config hardhat.perps.config.js scripts/perps/reseed-glp-liteforge.js --network liteforge",
+    "verify:ausdc": "node scripts/verify-ausdc-blockscout.mjs",
+    "deploy": "hardhat run scripts/deploy.js --network liteforge",
+    "deploy:addax": "hardhat run --config hardhat.addax.config.js scripts/deploy-addax.js --network liteforge",
+    "deploy:aggregator": "hardhat run --config hardhat.addax.config.js scripts/deploy-aggregator.js --network liteforge",
+    "deploy:liteforge": "hardhat run scripts/deploy.js --network liteforge",
+    "deploy:aris": "hardhat run --config hardhat.aris.config.js scripts/deploy-aris.js --network liteforge",
+    "deploy:aris:dca": "hardhat run --config hardhat.aris.config.js scripts/deploy-aris-dca.js --network liteforge",
+    "test": "hardhat test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.2.3",
+    "@uniswap/v3-core": "^1.0.1",
+    "@uniswap/v3-periphery": "^1.4.4",
+    "dotenv": "^17.4.2",
+    "ethers": "^5.8.0",
+    "hardhat": "^2.22.3",
+    "openzeppelin-contracts": "^4.0.0",
+    "solmate": "^6.8.0"
+  }
+}
